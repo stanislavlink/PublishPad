@@ -1,0 +1,113 @@
+/* Загальний контейнер */
+.register-container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 40px;
+    background-color: #f5f5f5; /* Світло-сірий для м'якості */
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd; /* Легкий контур */
+}
+
+/* Заголовок */
+.register-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Трохи темніший текст */
+    font-weight: bold;
+}
+
+/* Поля форми */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555; /* М'який текст */
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #85c47c; /* Зелений відтінок для фокусу */
+    outline: none;
+    box-shadow: 0 0 10px rgba(133, 196, 124, 0.5);
+}
+
+/* Кнопка */
+.register-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #74b067 !important;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-button button {
+    background-color: #74b067 !important; /* Трохи темніший зелений */
+}
+
+.register-button:active {
+    transform: scale(0.98);
+}
+
+/* Текст з посиланням */
+.already-have-account {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.already-have-account a {
+    color: #85c47c; /* Зелений для посилань */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.already-have-account a.register-button {
+    color: #74b067; /* Трохи темніший зелений */
+    text-decoration: underline;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .register-container {
+        padding: 20px;
+    }
+
+    .register-container h1 {
+        font-size: 1.8rem;
+    }
+
+    input {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .register-button {
+
+        padding: 12px;
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,170 @@
+app.post("/add-category", (req, res) => {
+    const { category_name } = req.body;
+
+    // Валідація назви категорії
+    if (!category_name || category_name.trim() === "") {
+        return res.status(400).json({ 
+            message: "Назва категорії не може бути порожньою." 
+        });
+    }
+
+    // Перевірка унікальності категорії
+    const checkCategorySql = "SELECT * FROM categories WHERE name = ?";
+    db.query(checkCategorySql, [category_name], (err, results) => {
+        if (err) {
+            console.error("Помилка перевірки категорії:", err);
+            return res.status(500).send("Помилка сервера");
+        }
+
+        // Якщо категорія вже існує
+        if (results.length > 0) {
+            return res.status(400).json({ 
+                message: "Ця категорія вже існує." 
+            });
+        }
+
+        // Додавання нової категорії
+        const insertCategorySql = "INSERT INTO categories (name) VALUES (?)";
+        db.query(insertCategorySql, [category_name], (err, results) => {
+            if (err) {
+                console.error("Помилка додавання категорії:", err);
+                return res.status(500).send("Помилка сервера");
+            }
+
+            // Повернення успішної відповіді
+            res.status(201).json({
+                message: "Категорія успішно додана!",
+                category: { 
+                    id: results.insertId, 
+                    name: category_name 
+                },
+            });
+        });
+    });
+});
+
+
+
+
+
+
+
+
+app.post("/add-category", (req, res) => {
+    const { category_name } = req.body;
+
+    // Validate category name
+    if (!category_name || category_name.trim() === "") {
+        return res.status(400).json({ message: "Назва категорії не може бути порожньою." });
+    }
+
+    // Check if the category already exists
+    const checkCategorySql = "SELECT * FROM categories WHERE name = ?";
+    db.query(checkCategorySql, [category_name], (err, results) => {
+        if (err) {
+            console.error("Error checking category:", err);
+            return res.status(500).send("Server error");
+        }
+
+        // If category already exists, send an error message
+        if (results.length > 0) {
+            return res.status(400).json({ message: "Ця категорія вже існує." });
+        }
+
+        // Insert new category into the database
+        const insertCategorySql = "INSERT INTO categories (name) VALUES (?)";
+        db.query(insertCategorySql, [category_name], (err, results) => {
+            if (err) {
+                console.error("Error adding category:", err);
+                return res.status(500).send("Server error");
+            }
+
+            // Return the newly added category
+            res.status(201).json({
+                message: "Категорія успішно додана!",
+                category: { id: results.insertId, name: category_name },
+            });
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "../components/pages/home/HomePage";
+import AdminPanel from "../components/pages/AdminPanel";
+import RegisterPage from "../components/pages/register/RegisterPage";
+import LoginPage from "../components/pages/login/LoginPage";
+import PrivateRoute from "./PrivateRoute";
+import UserProfile from "./pages/user/UserProfile";
+import CreateArticlePage from "./pages/article/CreateArticlePage";
+import ArticleDetailPage from "./pages/article/ArticleDetailPage";
+import MyArticlesPage from "./pages/article/MyArticlesPage";
+import EditArticlePage from "./pages/article/EditArticlePage";
+
+
+const AppRoutes = () => {
+    return (
+        <Routes>
+           
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+
+            <Route
+                path="/"
+                element={
+                    <PrivateRoute>
+                        <HomePage />
+
+                    </PrivateRoute>
+                }
+            />
+             <Route
+                path="/profile"
+                element={
+                    <PrivateRoute>
+                    <UserProfile/>
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/article/:id"
+                element={<ArticleDetailPage />}  
+            />
+             <Route path="/my-articles" element={<MyArticlesPage />} />
+             <Route path="/edit-article/:id" element={<EditArticlePage />} />
+              <Route
+                path="/add-article"
+                element={
+                    <PrivateRoute>
+                        
+                        <CreateArticlePage></CreateArticlePage>
+                    </PrivateRoute>
+                }
+            />
+        
+        
+            <Route
+                path="/admin"
+                element={
+                    <PrivateRoute>
+                        <AdminPanel />
+                    </PrivateRoute>
+                }
+            />
+           
+        </Routes>
+    );
+};
+
+export default AppRoutes;

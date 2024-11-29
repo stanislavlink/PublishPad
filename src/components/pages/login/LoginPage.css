@@ -1,0 +1,89 @@
+.login-container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #f8f9fa; /* Світло-сірий для фону */
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Заголовок */
+.login-container h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #2c3e50; /* Темно-сірий */
+    margin-bottom: 25px;
+}
+
+/* Поля вводу */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #16a085; /* Зелений акцент */
+    box-shadow: 0 0 8px rgba(22, 160, 133, 0.5);
+    outline: none;
+}
+
+/* Кнопка входу */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #16a085; /* Зелений */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #138d75; /* Трохи темніший зелений */
+}
+
+.submit-button:active {
+    transform: scale(0.97);
+}
+
+/* Текст для реєстрації */
+.no-account {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #34495e;
+}
+
+.no-account a {
+    color: #16a085; /* Зелений акцент */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.no-account a:hover {
+    color: #138d75;
+    text-decoration: underline;
+}
